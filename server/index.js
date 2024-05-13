@@ -9,10 +9,17 @@ const app = express();
 
 const createPath = (page) => path.resolve(__dirname, '../client/public/html', `${page}.html`);
 
+app.use(express.static('../client/public/css'));
+app.use(express.static('../client/public/images'));
+app.use(express.static('../client/public/font'));
+app.use(express.static('../client/public/js'));
 
 app.listen(PORT, (err) => {
-    if(err) return console.error('Error', err);
-    else return console.log(`Server runing  on PORT ${PORT}`);
+    if(err){
+        console.error('Error:', err)
+    }else{
+        console.log(`Server runing  on PORT ${PORT}`);
+    }
 });
 
 app.use('/', (req,res) => {
